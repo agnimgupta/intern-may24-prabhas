@@ -1,9 +1,19 @@
 import './App.css';
-import Header from './components/Header';
-import Navbar from './components/Navbar';
 
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useState } from "react";
+
+
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Navbar from "./components/Navbar";
 import TemplateList from './components/TemplateList';
+import TemplateDetails from './components/TemplateDetails';
+import RoutineDetails from './components/RoutineDetails';
+import AddRoutine from './components/AddRoutine';
+import CreateRoutine from './components/CreateRoutine';
+
+
 
 function App() {
 	const [showNav, setShowNav] = useState(true);
@@ -11,29 +21,35 @@ function App() {
 		main: -1,
 		sub: -1
 	});
+	const [selectedRowIndexes, setSelectedRowIndexes] = useState(new Set());
+
 
 	function toggleNav() {
 		setShowNav(!showNav)
 	}
 
-	return (
-		<div className='bg-[#F5F5F6]'>
-			<Header toggleNav={toggleNav} />
-			{showNav && <Navbar activeLinks={activeLinks} setActiveLinks={setActiveLinks} />}
-			<Main showNav={showNav}>
-				<TemplateList></TemplateList>
-			</Main>
 
-		</div>
+	return (
+		<Router>
+			<div className="bg-[#F5F5F6]">
+				<Header toggleNav={toggleNav} />
+				{showNav && <Navbar activeLinks={activeLinks} setActiveLinks={setActiveLinks} />}
+
+				<Main showNav={showNav}>
+					<Routes>
+						<Route path="/template-list" element={<TemplateList selectedRows={selectedRowIndexes} setSelectedRows={setSelectedRowIndexes} />} />
+						<Route path="/template-details/:id" element={<TemplateDetails  />} />
+						<Route path="/routine-details/:id" element={<RoutineDetails />} />
+						<Route path="/add-routine" element={<AddRoutine />} />
+						<Route path="/add-routine/create-routine" element={<CreateRoutine />} />
+					</Routes>
+				</Main>
+			</div>
+			
+		</Router>
 	);
 }
 
-function Main({showNav, children}) {
-	return (
-		<div className={`${showNav ? 'ml-[275px]': 'ml-0'} mt-[75px] py-8 px-4`}>
-			{children}
-		</div>
-	)
-}
+
 
 export default App;

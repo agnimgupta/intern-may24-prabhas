@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 const links = [
 	{
 		title: "Dashboard",
@@ -34,7 +37,16 @@ const links = [
 	{
 		title: "Routines",
 		logoUrl: "/navbar/routines.png",
-		subLinks: ['Routine Templates', 'Add Routine'],
+		subLinks: [
+			{
+				title: 'Routine Templates',
+				to: '/template-list'
+			},
+			{
+				title: 'Add Routine',
+				to: '/add-routine'
+			}
+		],
 	},
 ];
 
@@ -102,7 +114,9 @@ function Navbar({activeLinks, setActiveLinks}) {
 															onClick={() => handleSubLinkClick(index)}
 														>
 															<img src='/navbar/arrow-right.png' alt='Arrow Right' className={`${activeLinks.sub !== index && 'invisible'}`} />
-															<p className={`text-[15px] ${activeLinks.sub === index ? 'text-[#366038]' :'text-[#3A643B80]'} text-[#3A643B80] font-medium`}>{link}</p>
+															<Link to={link.to}>
+																<p className={`text-[15px] ${activeLinks.sub === index ? 'text-[#366038]' : 'text-[#3A643B80]'} text-[#3A643B80] font-medium`}>{link.title}</p>
+															</Link>
 														</div>
 													)
 												})
