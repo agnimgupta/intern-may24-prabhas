@@ -29,11 +29,11 @@ function AddRoutine() {
 
 					</div>
 					<div className="w-[280px] h-[45px] px-5 py-4 border border-[#3A643B] rounded-xl text-[#3A643B] font-medium flex items-center justify-center">Duplicate And Edit</div>
-					<ul className="list-disc text-[#646665] text-[15px] pl-6">
-						<li>Duplicate and edit existing template</li>
-						<li>Customize according to your need</li>
-					</ul>
-				</div>
+						<ul className="list-disc text-[#646665] text-[15px] pl-6">
+							<li>Duplicate and edit existing template</li>
+							<li>Customize according to your need</li>
+						</ul>
+					</div>
 
 			</div>
 
