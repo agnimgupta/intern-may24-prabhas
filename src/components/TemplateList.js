@@ -179,6 +179,10 @@ function TemplateList({selectedRows, setSelectedRows}) {
 		setShowOptions(!showOptions);
 	}
 
+
+	console.log(showOptions)
+
+
 	return (
 		<div>
 			<div className='*:text-[15px] *:font-medium flex items-center gap-2'>
@@ -224,7 +228,7 @@ function TemplateList({selectedRows, setSelectedRows}) {
 				</header>
 
 				<RoutinesTable selectedRows={selectedRows} onRowClick={setSelectedRows}></RoutinesTable>
-				{showOptions &&  <OptionsPopUp selectedRows={selectedRows} ></OptionsPopUp>}
+				{showSettingsIcon && showOptions &&  <OptionsPopUp selectedRows={selectedRows} ></OptionsPopUp>}
 
 				{/* Pagination */}
 
@@ -371,7 +375,7 @@ function OptionsPopUp({ selectedRows }) {
 						<Link to={`/template-details/${firstValue}`} className="block border-b border-b-[#EEEEEE] hover:bg-[#2E37A40D]">
 							<div>View Template</div>
 						</Link>
-						
+						<div className="border-b border-b-[#EEEEEE] hover:bg-[#2E37A40D]">Edit</div>						
 						<div className="border-b border-b-[#EEEEEE] hover:bg-[#2E37A40D]">Duplicate And Edit</div>
 						<div className="text-red-500 hover:bg-red-100">Delete</div>
 					</>

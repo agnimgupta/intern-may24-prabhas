@@ -13,6 +13,7 @@ import RoutineDetails from './components/RoutineDetails';
 import AddRoutine from './components/AddRoutine';
 import CreateRoutine from './components/CreateRoutine';
 import AddReminder from './components/AddReminder';
+import Notifications from './components/Notifications';
 
 
 
@@ -44,6 +45,7 @@ function App() {
 						<Route path="/add-routine" element={<AddRoutine />} />
 						<Route path="/add-routine/create-routine" element={<CreateRoutine />} />
 						<Route path="/add-reminder" element={<AddReminder />} />
+						<Route path="/notifications" element={<Notifications />} />
 					</Routes>
 				</Main>
 			</div>

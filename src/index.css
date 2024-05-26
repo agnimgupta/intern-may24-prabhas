@@ -84,3 +84,12 @@ code {
 
  	background-color: #D0D0D0;
  }
+
+
+ .green-tick {
+	visibility: hidden;
+ }
+
+ input:checked + .green-tick {
+	visibility: visible;
+ }

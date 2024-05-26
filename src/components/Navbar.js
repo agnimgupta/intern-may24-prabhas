@@ -50,7 +50,7 @@ const links = [
 	},
 ];
 
-function Navbar({activeLinks, setActiveLinks}) {
+function Navbar({ activeLinks, setActiveLinks }) {
 
 
 	function handleLinkClick(index) {
