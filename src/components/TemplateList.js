@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "./pagination";
 
@@ -166,10 +166,26 @@ const rows = [
 	},
 ]
 
+const filters = [
+	'Created By',
+	'Category',
+	'Reminders'
+];
 
+
+const filterTypes = {
+	0: ['Amrutam', 'Doctor', 'Patient'],
+	1: ['Health', 'Fitness'],
+	2: ['Turn On', 'Turn Off']
+}
 
 function TemplateList({selectedRows, setSelectedRows}) {
 	const [showOptions, setShowOptions] = useState(false);
+	const [showFilters, setShowFilters] = useState(false);
+	const [leftOffset, setLeftOffset] = useState(0);
+	const [filtersLeftOffset, setFiltersLeftOffset] = useState(0);
+	const optionsIcon = useRef(null);
+	const filtersIcon = useRef(null); 
 
 	const showSettingsIcon = selectedRows.size > 0;
 
@@ -179,8 +195,49 @@ function TemplateList({selectedRows, setSelectedRows}) {
 		setShowOptions(!showOptions);
 	}
 
+	function toggleFiltersMenu() {
+		setShowFilters(!showFilters);
+	}
 
-	console.log(showOptions)
+
+	useEffect(() => {
+		function calculateOptionsOffset() {
+			const leftOffset = optionsIcon.current.offsetLeft;
+
+			setLeftOffset(leftOffset);
+
+			// console.log('left offset ', leftOffset);
+		}
+
+		calculateOptionsOffset();
+
+		window.addEventListener('resize', calculateOptionsOffset);
+
+
+		return () => window.removeEventListener('resize', calculateOptionsOffset);
+
+	}, []);
+
+	useEffect(() => {
+		function calculateFiltersOffset() {
+			const leftOffset = filtersIcon.current.offsetLeft;
+
+			setFiltersLeftOffset(leftOffset);
+
+			console.log('left offset ', leftOffset);
+		}
+
+		calculateFiltersOffset();
+
+		window.addEventListener('resize', calculateFiltersOffset);
+
+
+		return () => window.removeEventListener('resize', calculateFiltersOffset);
+
+	}, []);
+
+
+	// console.log(showOptions)
 
 
 	return (
@@ -191,6 +248,7 @@ function TemplateList({selectedRows, setSelectedRows}) {
 				<p className='text-[#3A643B]'>Routine Templates</p>
 			</div>
 			<div className="relative bg-white rounded-xl py-4 mt-6 space-y-4">
+				
 				<header className="flex items-center gap-6 px-8">
 					<p className="font-medium">Template List</p>
 					<div className="relative ml-4">
@@ -215,11 +273,16 @@ function TemplateList({selectedRows, setSelectedRows}) {
 					<div
 						className={`${!showSettingsIcon && 'invisible'} border-[2px] border-[#3A643B] w-[32px] h-[29px] rounded-[4px] flex items-center justify-center cursor-pointer`}
 						onClick={toggleOptionsMenu}
+						ref={optionsIcon}
 					>
 						<img src='/template-list/delete.png' alt='Refresh' />
 					</div>
 	
-					<div className='bg-[#2E37A40D] hover:bg-[#2E37A41D]  w-[40px] h-[40px] rounded-xl flex items-center justify-center cursor-pointer ml-auto'>
+					<div
+						onClick={toggleFiltersMenu}
+						ref={filtersIcon}
+						className='bg-[#2E37A40D] hover:bg-[#2E37A41D]  w-[40px] h-[40px] rounded-xl flex items-center justify-center cursor-pointer ml-auto'
+					>
 						<img src='/template-list/filter.png' alt='Filter' />
 					</div>
 					<div className='bg-[#2E37A40D] hover:bg-[#2E37A41D] w-[40px] h-[40px] rounded-xl flex items-center justify-center cursor-pointer mr-auto'>
@@ -228,7 +291,8 @@ function TemplateList({selectedRows, setSelectedRows}) {
 				</header>
 
 				<RoutinesTable selectedRows={selectedRows} onRowClick={setSelectedRows}></RoutinesTable>
-				{showSettingsIcon && showOptions &&  <OptionsPopUp selectedRows={selectedRows} ></OptionsPopUp>}
+				{showSettingsIcon && showOptions && <OptionsPopUp selectedRows={selectedRows} offSet={leftOffset}></OptionsPopUp>}
+				{showFilters && <FiltersPopUp offSet={filtersLeftOffset}></FiltersPopUp>}
 
 				{/* Pagination */}
 
@@ -263,7 +327,7 @@ function RoutinesTable({ selectedRows, onRowClick }) {
 	}
 
 
-	console.log('selected rows', selectedRows);
+	// console.log('selected rows', selectedRows);
 
 
 	return (
@@ -358,8 +422,10 @@ function RoutinesTable({ selectedRows, onRowClick }) {
 
 
 
-function OptionsPopUp({ selectedRows }) {
+function OptionsPopUp({ selectedRows, offSet }) {
 	let firstValue;
+
+	// console.log('offset ', offSet);
 
 	if (selectedRows.size) {
 		firstValue = selectedRows.values().next().value;
@@ -368,7 +434,9 @@ function OptionsPopUp({ selectedRows }) {
 
 
 	return (
-		<div className={`absolute top-10 left-[47.5%] border border-[#E0E0E0] bg-white rounded text-[#454545] text-[14px] *:px-4 *:py-2 *:cursor-pointer`}>
+		<div
+			style={{left: `${offSet}px`}}
+			className='absolute top-10 border border-[#E0E0E0] bg-white rounded text-[#454545] text-[14px] *:px-4 *:py-2 *:cursor-pointer'>
 			{
 				selectedRows.size === 1 ? (
 					<>
@@ -383,6 +451,63 @@ function OptionsPopUp({ selectedRows }) {
 					<div className="text-red-500 hover:bg-red-100">Delete All</div>
 				)
 			}
+
+		</div>
+
+	)
+
+
+}
+
+
+
+function FiltersPopUp({ offSet }) {
+	const [selectedFilter, setSelectedFilter] = useState(0);
+
+	return (
+		<div
+			style={{ left: `${offSet - 250}px` }}
+			className='absolute h-[250px] top-12 left-20 border border-[#E0E0E0] bg-white rounded-lg text-[#454545] text-[14px]'
+		>
+			<h3 className="text-[15px] font-medium p-4 border-b border-[#D3D3D3]">Sort By</h3>
+			<div className="flex h-[78%]">
+				<div className="*:border-b *:border-[#D3D3D3] *:py-[10px] *:pl-4 *:pr-10 *:text-[14px] *:cursor-pointer">
+					{
+						filters.map((filter, index) => {
+							return (
+								<p
+									onClick={() => {
+										setSelectedFilter(index);
+										console.log(index)
+									}}
+									key={filter}
+									className={`${selectedFilter === index ? 'text-black' : 'text-[#878890]'}`}
+								>
+									{filter}
+								</p>
+							)
+							
+						})
+					}
+				</div>
+				<div className="w-[150px] space-y-2  px-4 py-4  border-l border-[#D3D3D3]">
+					{
+						filterTypes[selectedFilter].map(filterType => {
+							return (
+								<div key={filterType} className="flex items-center justify-between text-[14px]">
+									<label for={filterType}>{filterType}</label>
+									<input type='checkbox' id={filterType} />
+								</div>
+							)
+						})
+					} 
+
+				</div>
+
+			</div>
+
+
+			
 
 		</div>
 

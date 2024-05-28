@@ -14,6 +14,10 @@ import AddRoutine from './components/AddRoutine';
 import CreateRoutine from './components/CreateRoutine';
 import AddReminder from './components/AddReminder';
 import Notifications from './components/Notifications';
+import AssignCaregiver from './components/AssignCaregiver';
+import ProductDetails from './components/AddProduct';
+import ReminderChannel from './components/ReminderChannel';
+import WeeklyBenefits from './components/AddweeklyBenefits';
 
 
 
@@ -39,13 +43,17 @@ function App() {
 
 				<Main showNav={showNav}>
 					<Routes>
-						<Route path="/template-list" element={<TemplateList selectedRows={selectedRowIndexes} setSelectedRows={setSelectedRowIndexes} />} />
-						<Route path="/template-details/:id" element={<TemplateDetails  />} />
-						<Route path="/routine-details/:id" element={<RoutineDetails />} />
+						<Route path="/template-list" element={<TemplateList selectedRows={selectedRowIndexes} setSelectedRows={setSelectedRowIndexes} />} />		
+						<Route path="/template-details/:id" element={<TemplateDetails />} />
+						<Route path="/routine-details/:id" element={<RoutineDetails />} />						
 						<Route path="/add-routine" element={<AddRoutine />} />
 						<Route path="/add-routine/create-routine" element={<CreateRoutine />} />
 						<Route path="/add-reminder" element={<AddReminder />} />
 						<Route path="/notifications" element={<Notifications />} />
+						<Route path="/assign-caregiver" element={<AssignCaregiver />} />
+						<Route path="/product" element={<ProductDetails />} />
+						<Route path="/reminder-channels" element={<ReminderChannel />} />
+						<Route path="/weekly-benefits" element={<WeeklyBenefits />} />
 					</Routes>
 				</Main>
 			</div>

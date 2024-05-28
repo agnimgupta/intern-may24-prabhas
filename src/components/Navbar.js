@@ -115,7 +115,7 @@ function Navbar({ activeLinks, setActiveLinks }) {
 														>
 															<img src='/navbar/arrow-right.png' alt='Arrow Right' className={`${activeLinks.sub !== index && 'invisible'}`} />
 															<Link to={link.to}>
-																<p className={`text-[15px] ${activeLinks.sub === index ? 'text-[#366038]' : 'text-[#3A643B80]'} text-[#3A643B80] font-medium`}>{link.title}</p>
+																<p className={`text-[15px] ${activeLinks.sub === index ? 'text-[#28472a]' : 'text-[#3A643B80]'} text-[#3A643B80] font-medium`}>{link.title}</p>
 															</Link>
 														</div>
 													)

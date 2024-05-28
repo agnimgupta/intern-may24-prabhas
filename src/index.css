@@ -93,3 +93,9 @@ code {
  input:checked + .green-tick {
 	visibility: visible;
  }
+
+
+ input:checked +  .image-border {
+	border: 2px solid #646665;
+	border-radius: 8px;
+ }
