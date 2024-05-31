@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 
 const links = [
@@ -79,7 +80,9 @@ function Navbar({ activeLinks, setActiveLinks }) {
 	
 	
 	return (
-		<nav className="nav fixed left-0 top-[100px] rounded-tr-[40px] bg-[white] w-[250px] h-[600px]  px-4 py-2 drop-shadow-xl overflow-y-scroll">
+		<nav
+			className="nav fixed left-0 top-[100px] rounded-tr-[40px] bg-[white] w-[250px] h-[600px]  px-4 py-2 drop-shadow-xl overflow-y-scroll"
+		>
 			<h2 className="text-[#333333] text-[15px] font-medium">Main</h2>
 			<ul className="space-y-4 mt-6">
 				{

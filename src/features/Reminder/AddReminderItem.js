@@ -1,5 +1,6 @@
 import { Fragment, useRef, useState } from "react";
 import { useForm } from "react-hook-form"
+import { Link } from "react-router-dom";
 
 
 
@@ -456,7 +457,9 @@ function ProductDetails({ setStep, register }) {
 						<option value="Amrutam Eye drops">Amrutam Eye drops</option>
 						<option value="Amrutam Hair Growth">Amrutam Hair Growth</option>
 					</select>
-					<p className='text-[#3A643B] text-xs font-medium ml-4'>Unable to find product? Add your Product</p>
+					<Link to='/add-routine/create-routine/add-reminder/product'>
+					    <p className='text-[#3A643B] text-xs font-medium ml-4'>Unable to find product? Add your Product</p>
+					</Link>
 
 				</div>
 

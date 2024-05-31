@@ -1,5 +1,5 @@
-import AddReminderChannels from "./AddReminderChannels";
-import Breadcrumb from "./Breadcrumb";
+import ReminderChannel from "./ReminderChannel";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const REMINDER_CHANNELS = [
 	{ title: "SMS", channel: "Mobile Number", isActive: true },
@@ -21,13 +21,13 @@ const REMINDER_CHANNELS = [
 	},
 ];
 
-const ReminderChannel = () => {
+const ReminderChannels = () => {
 	return (
 		<section
 			className={`mx-auto mb-5 flex min-h-full max-w-7xl flex-col items-center  gap-[1.9rem] rounded-xl  px-5`}
 		>
 			<Breadcrumb
-				list={["Routine", "Add New Routine", "Add Reminder Channels"]}
+				list={["Routine", "Add Routine", "Create Routine", "Add Reminder Channels"]}
 			/>
 			<div className="flex w-full flex-col gap-10 rounded-xl bg-white px-5 py-4 lg:pr-16">
 				<div className="font-poppins text-[22px] text-black">
@@ -42,7 +42,7 @@ const ReminderChannel = () => {
 							<div key={item.title} className="w-full sm:w-fit">
 								{item.isActive && (
 									<div key={item.title} className="w-full sm:w-fit xl:mr-5">
-										<AddReminderChannels
+										<ReminderChannel
 											title={item.title}
 											channel={item.channel}
 											isActive={item.isActive}
@@ -65,7 +65,7 @@ const ReminderChannel = () => {
 								>
 									{!item.isActive && (
 										<div key={item.title} className="w-full sm:w-fit xl:mr-5">
-											<AddReminderChannels
+											<ReminderChannel
 												title={item.title}
 												channel={item.channel}
 												isActive={item.isActive}
@@ -83,4 +83,4 @@ const ReminderChannel = () => {
 	);
 };
 
-export default ReminderChannel;
+export default ReminderChannels;

@@ -42,7 +42,10 @@ function NotificationPopUp({setShow}) {
 					})
 				}
                 
-				<Link to='/notifications'>
+				<Link
+					to='/notifications'
+					onClick={() => setShow(false)}
+				>
 					<p className="text-[#3A643B] text-[12px] font-medium px-4 my-4">view all notifications</p>
 				</Link>
 				

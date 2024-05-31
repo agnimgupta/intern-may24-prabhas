@@ -1,6 +1,7 @@
-import Breadcrumb from "./Breadcrumb";
-import PhotoUploader from "../components/PhotoUploader";
-import SingleLineInput from "../components/SingleLineInput";
+import Breadcrumb from "../../components/Breadcrumb";
+import PhotoUploader from "../../components/PhotoUploader";
+import SingleLineInput from "../../components/SingleLineInput";
+
 
 const ProductDetails = () => {
 	return (

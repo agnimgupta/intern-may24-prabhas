@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import {
 	Menu,
 	MenuButton,
@@ -7,7 +6,8 @@ import {
 	MenuItems,
 	Transition,
 } from "@headlessui/react";
-import PhotoUploader from './PhotoUploader';
+import PhotoUploader from '../../components/PhotoUploader';
+import { Link } from "react-router-dom";
 
 
 
@@ -246,14 +246,20 @@ function CreateRoutine() {
 						
 
 						<div className="space-y-4">
-							<div className="flex items-center gap-4">
-								<div className="w-[34px] h-[34px] rounded-lg border-[1.5px] cursor-pointer border-[#3A643B] flex items-center justify-center">
-									<img src='/create-routine/plus.png' alt='plus' />
-								</div>
-								<div>
-									<p className="text-[#3A643B] text-[14px] font-medium">Add Reminder Items</p>
-									<p className="text-[#A0A0A0] text-[12px]">Add Items for your Routine</p>
-								</div>
+							<div className="flex items-center">
+								<Link
+									to='/add-routine/create-routine/add-reminder'
+									className="flex items-center gap-4"
+								>
+									<div className="w-[34px] h-[34px] rounded-lg border-[1.5px] cursor-pointer border-[#3A643B] flex items-center justify-center">
+										<img src='/create-routine/plus.png' alt='plus' />
+									</div>
+									<div>
+										<p className="text-[#3A643B] text-[14px] font-medium">Add Reminder Items</p>
+										<p className="text-[#A0A0A0] text-[12px]">Add Items for your Routine</p>
+									</div>
+								</Link>
+								
 
 								<p className="text-[#3A643B] text-[14px] font-medium cursor-pointer ml-auto self-start">View All (4)</p>
 							</div>
@@ -268,7 +274,11 @@ function CreateRoutine() {
 							</div>
 						</div>
 
-						<div className="flex items-center gap-4">
+
+						<Link
+							to='/add-routine/create-routine/weekly-benefits'
+							className="flex items-center gap-4"
+						>
 							<div className="w-[34px] h-[34px] rounded-lg border-[1.5px] cursor-pointer border-[#3A643B] flex items-center justify-center">
 								<img src='/create-routine/plus.png' alt='plus' />
 							</div>
@@ -276,12 +286,13 @@ function CreateRoutine() {
 								<p className="text-[#3A643B] text-[14px] font-medium">Add Weekly Benefits</p>
 								<p className="text-[#A0A0A0] text-[12px]">Add weekly benefits of this Routine so that users can tally the progress</p>
 							</div>
-
-
-						</div>
+						</Link>
 
 						<div className="space-y-4">
-							<div className="flex items-center gap-4">
+							<Link
+								to='/add-routine/create-routine/reminder-channels'
+								className="flex items-center gap-4"
+							>
 								<div className="w-[34px] h-[34px] rounded-lg border-[1.5px] cursor-pointer border-[#3A643B] flex items-center justify-center">
 									<img src='/create-routine/plus.png' alt='plus' />
 								</div>
@@ -290,7 +301,7 @@ function CreateRoutine() {
 									<p className="text-[#A0A0A0] text-[12px]">We will notify you about your Routine using channels.</p>
 								</div>
 
-							</div>
+							</Link>
 
 							<div className="flex items-center gap-4 ml-12">
 								{
@@ -304,7 +315,10 @@ function CreateRoutine() {
 
 
 						<div className="space-y-4">
-							<div className="flex items-center gap-4">
+							<Link
+								to='/add-routine/create-routine/assign-caregiver'
+								className="flex items-center gap-4"
+							>
 								<div className="w-[34px] h-[34px] rounded-lg border-[1.5px] cursor-pointer border-[#3A643B] flex items-center justify-center">
 									<img src='/create-routine/plus.png' alt='plus' />
 								</div>
@@ -313,7 +327,7 @@ function CreateRoutine() {
 									<p className="text-[#A0A0A0] text-[12px]">We will keep updating caregiver about your Routine. </p>
 								</div>
 
-							</div>
+							</Link>
 
 							<div className="flex items-center gap-10 flex-wrap">
 								{

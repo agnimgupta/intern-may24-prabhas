@@ -1,6 +1,6 @@
-import Breadcrumb from "./Breadcrumb";
-import SimpleDropDownComponent from "./DropDownComponent";
-import TextAreaWithAddMore from "./TextAreaWithAddMore";
+import Breadcrumb from "../../components/Breadcrumb";
+import SimpleDropDownComponent from "../../components/DropDownComponent";
+import TextAreaWithAddMore from "../../components/TextAreaWithAddMore";
 
 const WeeklyBenefits = () => {
 	return (

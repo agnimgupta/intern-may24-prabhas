@@ -1,9 +1,9 @@
-import AddMoreButton from "./AddMoreButton";
-import SingleLineInput from "./SingleLineInput";
-import ToggleButton from "./ToggleButton";
-import PhoneNumberInput from "./PhoneInput";
+import AddMoreButton from "../../components/AddMoreButton";
+import SingleLineInput from "../../components/SingleLineInput";
+import ToggleButton from "../../components/ToggleButton";
+import PhoneNumberInput from "../../components/PhoneInput";
 
-const AddReminderChannels = ({ title, channel, isActive, btnLabel }) => {
+const ReminderChannel = ({ title, channel, isActive, btnLabel }) => {
 
 	return (
 		<div className="flex w-full flex-col items-end gap-5 rounded-[20px] border-[1.5px] border-solid border-blue-ice p-4 sm:w-96 lg:w-[432px]">
@@ -26,5 +26,5 @@ const AddReminderChannels = ({ title, channel, isActive, btnLabel }) => {
 	);
 };
 
-export default AddReminderChannels;
+export default ReminderChannel;
 

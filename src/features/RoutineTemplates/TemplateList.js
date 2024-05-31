@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Pagination from "./pagination";
+import Pagination from "../../components/pagination";
 
 const headings = [
 	'Name',
@@ -327,7 +327,6 @@ function RoutinesTable({ selectedRows, onRowClick }) {
 	}
 
 
-	// console.log('selected rows', selectedRows);
 
 
 	return (
@@ -425,7 +424,6 @@ function RoutinesTable({ selectedRows, onRowClick }) {
 function OptionsPopUp({ selectedRows, offSet }) {
 	let firstValue;
 
-	// console.log('offset ', offSet);
 
 	if (selectedRows.size) {
 		firstValue = selectedRows.values().next().value;
@@ -440,10 +438,13 @@ function OptionsPopUp({ selectedRows, offSet }) {
 			{
 				selectedRows.size === 1 ? (
 					<>
-						<Link to={`/template-details/${firstValue}`} className="block border-b border-b-[#EEEEEE] hover:bg-[#2E37A40D]">
+						<Link to={`/routine-details/${firstValue}`} className="block border-b border-b-[#EEEEEE] hover:bg-[#2E37A40D]">
 							<div>View Template</div>
 						</Link>
-						<div className="border-b border-b-[#EEEEEE] hover:bg-[#2E37A40D]">Edit</div>						
+						<Link to={`/template-details/${firstValue}`} className="block border-b border-b-[#EEEEEE] hover:bg-[#2E37A40D]">
+							<div>Edit</div>
+						</Link>
+
 						<div className="border-b border-b-[#EEEEEE] hover:bg-[#2E37A40D]">Duplicate And Edit</div>
 						<div className="text-red-500 hover:bg-red-100">Delete</div>
 					</>

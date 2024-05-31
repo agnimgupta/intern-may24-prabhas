@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import Pagination from "./pagination";
+import Pagination from "../../components/pagination";
+
 
 const likes = [
 	{
@@ -107,7 +108,7 @@ function TemplateDetails() {
 function RoutineTemplateDetails({id}) {
 	return (
 		<div className="relative bg-white px-6 pt-2 pb-6 rounded-xl mt-8">
-			<Link to={`/routine-details/${id}`}>
+			<Link to={`/edit-routine/${id}`}>
 				<button
 					className="absolute top-4 right-4 w-[60px] text-[#3A643B] text-[14px] font-medium border border-[#3A643B] px-2 py-[1px] rounded"
 				>
